@@ -15,6 +15,7 @@ services:
         - PUBLIC_KEY=${PUBLIC_KEY}
         - NEXT_HOSTNAME=${NEXT_HOSTNAME}
         - EXTERNAL_API_BASE_URL=${EXTERNAL_API_BASE_URL}
+        - NEXTAUTH_URL=${NEXTAUTH_URL}
       dockerfile: Dockerfile
     container_name: logistica-frontend
     restart: unless-stopped
@@ -34,6 +35,7 @@ services:
       - PUBLIC_KEY=${PUBLIC_KEY}
       - NEXT_HOSTNAME=${NEXT_HOSTNAME}
       - EXTERNAL_API_BASE_URL=${EXTERNAL_API_BASE_URL}
+      - NEXTAUTH_URL=${NEXTAUTH_URL}
 
     labels:
       # Habilita o Traefik
