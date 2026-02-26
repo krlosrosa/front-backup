@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  vitepwa:
+  logistica-frontend:
     build:
       context: .
       args:
@@ -14,7 +14,7 @@ services:
         - PUBLIC_KEY=${PUBLIC_KEY}
         - NEXT_HOSTNAME=${NEXT_HOSTNAME}
       dockerfile: Dockerfile
-    container_name: vitepwa
+    container_name: logistica-frontend
     restart: unless-stopped
     
     # Porta interna que seu app expõe (ajuste se necessário)
@@ -36,16 +36,16 @@ services:
       - "traefik.enable=true"
 
       # Router
-      - "traefik.http.routers.vitepwa.rule=Host(`${NEXT_HOSTNAME}`)"
-      - "traefik.http.routers.vitepwa.entrypoints=websecure"
-      - "traefik.http.routers.vitepwa.service=vitepwa-service"
+      - "traefik.http.routers.logistica-frontend.rule=Host(`${NEXT_HOSTNAME}`)"
+      - "traefik.http.routers.logistica-frontend.entrypoints=websecure"
+      - "traefik.http.routers.logistica-frontend.service=logistica-frontend-service"
 
       # TLS
-      - "traefik.http.routers.vitepwa.tls=true"
-      - "traefik.http.routers.vitepwa.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.logistica-frontend.tls=true"
+      - "traefik.http.routers.logistica-frontend.tls.certresolver=letsencrypt"
 
       # Load balancer → porta interna
-      - "traefik.http.services.vitepwa-service.loadbalancer.server.port=3000"
+      - "traefik.http.services.logistica-frontend-service.loadbalancer.server.port=3000"
 
     networks:
       - proxy
